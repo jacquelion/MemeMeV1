@@ -59,6 +59,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.unsubscribeToKeyboardNotifications()
     }
     
+//    override func viewDidDisappear(animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.tabBarController?.tabBar.hidden = false;
+//    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -153,7 +158,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         navigationController?.navigationBarHidden = false
-        navigationController?.toolbarHidden = false
+        navigationController?.toolbarHidden = true
         
         return memedImage
     }
