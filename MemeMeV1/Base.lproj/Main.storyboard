@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-471" y="339"/>
         </scene>
-        <!--View Controller-->
+        <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMeV1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeMeV1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -58,17 +58,11 @@
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="77" width="400" height="47"/>
-                                </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K6B-67-yjr">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="495" width="400" height="30"/>
-                                </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -93,17 +87,17 @@
                                 <exclude reference="K6B-67-yjr"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="J1V-w1-Icl"/>
-                                <exclude reference="RwZ-AB-gGb"/>
-                                <exclude reference="pv3-fj-2WL"/>
-                                <exclude reference="wNT-pQ-1dg"/>
+                                <exclude reference="co9-D9-7UP"/>
                                 <exclude reference="SEZ-wx-fbj"/>
                                 <exclude reference="oNv-xr-hgU"/>
-                                <exclude reference="co9-D9-7UP"/>
                                 <exclude reference="hwa-mN-axe"/>
                                 <exclude reference="kqY-UC-0Lf"/>
                                 <exclude reference="nO3-ZP-775"/>
                                 <exclude reference="oAd-bq-Z8h"/>
+                                <exclude reference="J1V-w1-Icl"/>
+                                <exclude reference="RwZ-AB-gGb"/>
+                                <exclude reference="pv3-fj-2WL"/>
+                                <exclude reference="wNT-pQ-1dg"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -114,17 +108,17 @@
                                 <include reference="K6B-67-yjr"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="J1V-w1-Icl"/>
-                                <include reference="RwZ-AB-gGb"/>
-                                <include reference="pv3-fj-2WL"/>
-                                <include reference="wNT-pQ-1dg"/>
+                                <include reference="co9-D9-7UP"/>
                                 <include reference="SEZ-wx-fbj"/>
                                 <include reference="oNv-xr-hgU"/>
-                                <include reference="co9-D9-7UP"/>
                                 <include reference="hwa-mN-axe"/>
                                 <include reference="kqY-UC-0Lf"/>
                                 <include reference="nO3-ZP-775"/>
                                 <include reference="oAd-bq-Z8h"/>
+                                <include reference="J1V-w1-Icl"/>
+                                <include reference="RwZ-AB-gGb"/>
+                                <include reference="pv3-fj-2WL"/>
+                                <include reference="wNT-pQ-1dg"/>
                             </mask>
                         </variation>
                     </view>
