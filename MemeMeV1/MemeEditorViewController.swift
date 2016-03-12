@@ -20,22 +20,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : 4.0
+        NSStrokeWidthAttributeName : -4.0
     ]
     
     func textFieldSetup(textField: UITextField!){
         textField.defaultTextAttributes = memeTextAttributes
         textField.textAlignment = .Center
+        textField.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         imagePicker.delegate = self
-        textFieldTop.delegate = self
-        textFieldBottom.delegate = self
         buttonCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         buttonShareMeme.enabled = false
         
@@ -89,7 +88,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func keyboardWillShow(notification: NSNotification) {
         if textFieldTop.isFirstResponder() { return }
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        view.frame.origin.y -= getKeyboardHeight(notification)
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -129,18 +128,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     //MARK: Save Meme
-    var memes : [Meme] = []
-    
-    struct Meme {
-        var textTop : String
-        var textBotton: String
-        var image: UIImage
-        var memedImage: UIImage
-    }
     
     func save() {
-        let meme = Meme(textTop: textFieldTop.text!, textBotton: textFieldBottom.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
-        memes.append(meme)
+        let meme = Meme(textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
+        
+        (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
+        print("All memes: ", Meme.allMemes)
     }
     
     func generateMemedImage() -> UIImage {
