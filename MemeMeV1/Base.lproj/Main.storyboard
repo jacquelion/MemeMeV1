@@ -299,7 +299,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="B3T-PI-Dhf"/>
                     <connections>
-                        <outlet property="collectionView" destination="gxZ-0f-itc" id="FB5-rJ-uKo"/>
+                        <outlet property="collectionView" destination="gxZ-0f-itc" id="Jpy-ay-qp6"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smJ-vI-9eO" userLabel="First Responder" sceneMemberID="firstResponder"/>

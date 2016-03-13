@@ -12,15 +12,21 @@ import UIKit
 class MemeCollectionViewController : UICollectionViewController {
     
     
-    var memes: [Meme]!
+    var memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     var allMemes = Meme.allMemes
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("allMemes CollectionViewController", allMemes)
-        let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        memes = applicationDelegate.memes
+        print("memes", memes)
+        //let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        //memes = applicationDelegate.memes
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("Data is being reloaded")
+        collectionView!.reloadData()
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

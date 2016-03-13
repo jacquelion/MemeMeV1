@@ -11,7 +11,19 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     var memes : [Meme]!
-    let allMemes = Meme.allMemes
+    var allMemes = Meme.allMemes
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("allMemes TableiewController", allMemes)
+        let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
+        memes = applicationDelegate.memes
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableView!.reloadData()
+    }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.allMemes.count
