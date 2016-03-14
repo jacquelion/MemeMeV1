@@ -31,6 +31,7 @@ class MemeDetailViewController: UIViewController {
         self.textTop?.attributedText = attribTopText
         self.textBottom?.attributedText =  attribBottomText
         self.image.image = self.meme.image
+        self.image.contentMode = .ScaleAspectFit
         
         self.tabBarController?.tabBar.hidden = true
     }
