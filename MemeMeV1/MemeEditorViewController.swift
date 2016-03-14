@@ -6,6 +6,7 @@
 //  Copyright © 2016 Jacqueline Sloves. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -15,6 +16,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textFieldTop: UITextField!
     @IBOutlet weak var textFieldBottom: UITextField!
     @IBOutlet weak var buttonShareMeme: UIBarButtonItem!
+    @IBOutlet weak var buttonEdit: UIBarButtonItem!
+    @IBOutlet weak var buttonCancel: UIBarButtonItem!
+    var editingMeme: Bool!
     
     let imagePicker = UIImagePickerController()
     
@@ -38,6 +42,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         buttonCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         buttonShareMeme.enabled = false
         
+       // navigationItem.rightBarButtonItem?.title = "Cancel"
+        //navigationItem.rightBarButtonItem?.action = dismissViewControllerAnimated(true, completion: nil)
+        
         //set top text field attributes
         textFieldTop.placeholder = "TOP"
         textFieldSetup(textFieldTop)
@@ -45,13 +52,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //set bottom text field attributes
         textFieldBottom.placeholder = "BOTTOM"
         textFieldSetup(textFieldBottom)
+        
+        
+        editingMeme = false
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //Subscribe to keyboard notifications to allow the view to raise when necessary
         subscribeToKeyboardNotifications()
-    }
+        
+        }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -127,13 +138,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    //MARK: NavBar Controller
+    
+    @IBAction func cancelAddMeme(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     //MARK: Save Meme
     
     func save() {
         let meme = Meme(textTop: textFieldTop.text!, textBottom: textFieldBottom.text!, image: imagePickerView.image!, memedImage: generateMemedImage())
         
         (UIApplication.sharedApplication().delegate as! AppDelegate).memes.append(meme)
-        print("All memes: ", Meme.allMemes)
+        textFieldBottom.text = ""
+        textFieldTop.text = ""
+        imagePickerView.image = nil
     }
     
     func generateMemedImage() -> UIImage {

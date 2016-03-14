@@ -18,9 +18,19 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.textTop.text = self.meme.textTop
-        self.textBottom.text = self.meme.textTop
-        self.image!.image = self.meme.image
+        
+        let labelTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName : -4.0
+        ]
+        let attribTopText = NSMutableAttributedString(string: self.meme.textTop, attributes: labelTextAttributes)
+        let attribBottomText =  NSMutableAttributedString(string: self.meme.textBottom, attributes: labelTextAttributes)
+        
+        self.textTop?.attributedText = attribTopText
+        self.textBottom?.attributedText =  attribBottomText
+        self.image.image = self.meme.image
         
         self.tabBarController?.tabBar.hidden = true
     }
@@ -30,4 +40,15 @@ class MemeDetailViewController: UIViewController {
         self.tabBarController?.tabBar.hidden = false
     }
 
+    @IBAction func editMeme(sender: UIBarButtonItem!) {
+        
+        let editMemeVC = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        
+        editMemeVC.textFieldTop.text = self.meme.textTop
+        editMemeVC.textFieldBottom.text = self.meme.textBottom
+        editMemeVC.imagePickerView.image = self.meme.image
+        
+        self.navigationController?.presentViewController(editMemeVC, animated: true, completion: nil)
+    }
+    
 }

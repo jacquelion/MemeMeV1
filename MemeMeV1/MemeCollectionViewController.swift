@@ -12,25 +12,21 @@ import UIKit
 class MemeCollectionViewController : UICollectionViewController {
     
     
-    var memes = (UIApplication.sharedApplication().delegate as! AppDelegate).memes
-    var allMemes = Meme.allMemes
+    var memes: [Meme]! {
+            let object = UIApplication.sharedApplication().delegate
+            let appDelegate =  object as! AppDelegate
+            return appDelegate.memes
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("allMemes CollectionViewController", allMemes)
-        print("memes", memes)
-        //let applicationDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
-        //memes = applicationDelegate.memes
     }
     
     override func viewDidAppear(animated: Bool) {
-        print("Data is being reloaded")
         collectionView!.reloadData()
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("memes count: ", memes.count)
         return memes.count
     }
     
@@ -38,11 +34,19 @@ class MemeCollectionViewController : UICollectionViewController {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CustomMemeCell", forIndexPath: indexPath) as! CustomMemeCell
         let meme = memes[indexPath.item]
-        cell.textTop.text = meme.textTop
-        cell.textBottom.text =  meme.textBottom
-        //let imageView = UIImageView(image: meme.image)
-        cell.image.image = meme.image
         
+        let labelTextAttributes = [
+            NSStrokeColorAttributeName : UIColor.blackColor(),
+            NSForegroundColorAttributeName : UIColor.whiteColor(),
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 10)!,
+            NSStrokeWidthAttributeName : -3.0
+        ]
+        let attribTopText = NSAttributedString(string: meme.textTop, attributes: labelTextAttributes)
+        let attribBottomText =  NSAttributedString(string: meme.textBottom, attributes: labelTextAttributes) 
+        
+        cell.textTop?.attributedText = attribTopText
+        cell.textBottom?.attributedText =  attribBottomText
+        cell.image.image = meme.image
         
         return cell
     }
