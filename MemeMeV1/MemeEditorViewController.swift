@@ -16,10 +16,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textFieldTop: UITextField!
     @IBOutlet weak var textFieldBottom: UITextField!
     @IBOutlet weak var buttonShareMeme: UIBarButtonItem!
-    @IBOutlet weak var buttonEdit: UIBarButtonItem!
     @IBOutlet weak var buttonCancel: UIBarButtonItem!
     var editingMeme: Bool!
-    
     let imagePicker = UIImagePickerController()
     
     let memeTextAttributes = [
@@ -42,9 +40,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         buttonCamera.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         buttonShareMeme.enabled = false
         
-       // navigationItem.rightBarButtonItem?.title = "Cancel"
-        //navigationItem.rightBarButtonItem?.action = dismissViewControllerAnimated(true, completion: nil)
-        
         //set top text field attributes
         textFieldTop.placeholder = "TOP"
         textFieldSetup(textFieldTop)
@@ -52,7 +47,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //set bottom text field attributes
         textFieldBottom.placeholder = "BOTTOM"
         textFieldSetup(textFieldBottom)
-        
         
         editingMeme = false
     }
@@ -62,7 +56,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //Subscribe to keyboard notifications to allow the view to raise when necessary
         subscribeToKeyboardNotifications()
         
+        if (editingMeme == true) {
+            if let topTextField = self.textFieldTop {
+                print ("topTextField: ", topTextField)
+                textFieldTop.text = topTextField.text
+            }
+            if let bottomTextField = self.textFieldBottom {
+                textFieldBottom.text = bottomTextField.text
+            }
+            if let imagePicker = self.imagePickerView {
+                imagePickerView.image = imagePicker.image
+            }
         }
+    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -157,7 +163,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         navigationController?.navigationBarHidden = true
+        navigationController?.setToolbarHidden(true, animated: false)
         navigationController?.toolbarHidden = true
+        tabBarController?.tabBar.hidden = true
 
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)

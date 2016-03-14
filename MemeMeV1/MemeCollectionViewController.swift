@@ -47,7 +47,7 @@ class MemeCollectionViewController : UICollectionViewController {
         cell.textTop?.attributedText = attribTopText
         cell.textBottom?.attributedText =  attribBottomText
         cell.image.image = meme.image
-        
+
         return cell
     }
     
