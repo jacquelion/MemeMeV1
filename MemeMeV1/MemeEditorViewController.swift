@@ -18,6 +18,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var buttonShareMeme: UIBarButtonItem!
     @IBOutlet weak var buttonCancel: UIBarButtonItem!
     var editingMeme: Bool!
+    var topTextField: String!
+    var bottomTextField: String!
+    var image: UIImage!
+    
     let imagePicker = UIImagePickerController()
     
     let memeTextAttributes = [
@@ -53,21 +57,26 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
         //Subscribe to keyboard notifications to allow the view to raise when necessary
         subscribeToKeyboardNotifications()
         
         if (editingMeme == true) {
-            if let topTextField = self.textFieldTop {
-                print ("topTextField: ", topTextField)
-                textFieldTop.text = topTextField.text
-            }
-            if let bottomTextField = self.textFieldBottom {
-                textFieldBottom.text = bottomTextField.text
-            }
-            if let imagePicker = self.imagePickerView {
-                imagePickerView.image = imagePicker.image
-            }
+            textFieldTop.text = topTextField
+            textFieldBottom.text = bottomTextField
+            imagePickerView.image = image
         }
+//            if let topText = self.textFieldTop {
+//                print ("topTextField: ", topTextField)
+//                topText.text = topTextField
+//            }
+//            if let bottomText = self.textFieldBottom {
+//                bottomText.text = bottomTextField
+//            }
+//            if let imagePicker = self.imagePickerView {
+//                imagePicker.image = image
+//            }
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -147,7 +156,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     //MARK: NavBar Controller
     
     @IBAction func cancelAddMeme(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController!.popViewControllerAnimated(true)
     }
     
     //MARK: Save Meme
@@ -163,8 +172,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         navigationController?.navigationBarHidden = true
-        navigationController?.setToolbarHidden(true, animated: false)
-        navigationController?.toolbarHidden = true
         tabBarController?.tabBar.hidden = true
 
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -174,13 +181,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         navigationController?.navigationBarHidden = false
-        navigationController?.toolbarHidden = true
+        tabBarController?.tabBar.hidden = false
         
         return memedImage
     }
     
     //MARK: Share Meme
-    
     @IBAction func shareMeme(sender: UIBarButtonItem) {
         let myMeme = generateMemedImage()
         let vc = UIActivityViewController(activityItems: [myMeme], applicationActivities: [])
@@ -189,14 +195,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 activity, completed, items, error in
             if completed {
                 self.save()
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.navigationController!.popViewControllerAnimated(true)
             }
         }
-        
         presentViewController(vc, animated: true, completion: nil)
-
-        }
-    
     }
+}
 
 

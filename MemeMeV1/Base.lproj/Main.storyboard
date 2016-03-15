@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NqB-lS-1IL" id="PYY-z4-8NY">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -50,14 +50,17 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="APR-9B-H8T">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5K7-ja-n30">
                             <connections>
-                                <segue destination="1a4-96-mbk" kind="show" id="tI9-3s-rJC"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="ZOg-AP-8UR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="i3Y-0Q-Fg8" kind="showDetail" id="COO-sj-Hxb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vuy-UU-ByW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="267" y="1075"/>
+            <point key="canvasLocation" x="258" y="1021"/>
         </scene>
         <!--My Memes Table View-->
         <scene sceneID="z8J-16-tTR">
@@ -75,23 +78,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N2e-aK-QSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-579" y="895"/>
-        </scene>
-        <!--Make A Meme-->
-        <scene sceneID="YMY-gy-iLB">
-            <objects>
-                <navigationController title="Make A Meme" id="1a4-96-mbk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="hyv-9I-8lq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RnP-em-Ulm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="go5-Xd-sRw"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5vg-jy-yU4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="258" y="275"/>
         </scene>
         <!--Meme Detail View Controller-->
         <scene sceneID="Tud-nK-Ug8">
@@ -162,11 +148,12 @@
                         <outlet property="image" destination="iSV-53-Y4b" id="dUV-LB-9wy"/>
                         <outlet property="textBottom" destination="G9s-Di-VD5" id="Ttx-4I-C46"/>
                         <outlet property="textTop" destination="3ma-WW-7K0" id="8ck-3e-BcL"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="editMeme" id="hsa-Xg-k6P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhC-nd-biF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657" y="-473"/>
+            <point key="canvasLocation" x="1023" y="291"/>
         </scene>
         <!--Meme Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -272,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="943" y="275"/>
+            <point key="canvasLocation" x="258" y="291"/>
         </scene>
         <!--MemeMe Collection View-->
         <scene sceneID="9rH-sO-0U7">
@@ -376,35 +363,18 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="B3T-PI-Dhf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TJb-Tu-nqQ">
                             <connections>
-                                <segue destination="1a4-96-mbk" kind="show" id="pNC-5l-Phk"/>
+                                <segue destination="BYZ-38-t0r" kind="show" id="gcK-hQ-7G7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="gxZ-0f-itc" id="Jpy-ay-qp6"/>
+                        <segue destination="i3Y-0Q-Fg8" kind="showDetail" id="5Up-x3-v6Z"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smJ-vI-9eO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="258" y="-497"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="aqD-DH-tOG">
-            <objects>
-                <navigationController storyboardIdentifier="MemeDetailNavController" automaticallyAdjustsScrollViewInsets="NO" id="Zwz-p1-ZTV" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v8m-4E-4Dc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="i3Y-0Q-Fg8" kind="relationship" relationship="rootViewController" id="vRF-d4-Vod"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zhS-94-E9S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="937" y="-473"/>
         </scene>
     </scenes>
     <resources>
@@ -412,6 +382,7 @@
         <image name="TableView" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pNC-5l-Phk"/>
+        <segue reference="COO-sj-Hxb"/>
+        <segue reference="hsa-Xg-k6P"/>
     </inferredMetricsTieBreakers>
 </document>

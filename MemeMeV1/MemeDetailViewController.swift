@@ -42,17 +42,25 @@ class MemeDetailViewController: UIViewController {
     }
 
     @IBAction func editMeme(sender: UIBarButtonItem!) {
+        //TODO: fix edit
+        
+        performSegueWithIdentifier("editMeme", sender: self)
+    }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let storyboard = UIStoryboard(name:"Main", bundle: nil)
         let editMemeVC = storyboard.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        
-        //TODO: fix crash
-        editMemeVC.textFieldTop.text = meme.textTop
-        editMemeVC.textFieldBottom.text = meme.textBottom
-        editMemeVC.imagePickerView.image = meme.image
+
         editMemeVC.editingMeme = true
+        editMemeVC.topTextField = meme.textTop
+        editMemeVC.bottomTextField = meme.textBottom
+        editMemeVC.image = meme.image
         
-        self.navigationController?.presentViewController(editMemeVC, animated: true, completion: nil)
+//        editMemeVC.textFieldTop.text = meme.textTop
+//        editMemeVC.textFieldBottom.text = meme.textBottom
+//        editMemeVC.imagePickerView.image = meme.image
+//        
+//        editMemeVC.editingMeme = true
     }
     
 }

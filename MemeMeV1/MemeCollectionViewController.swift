@@ -42,11 +42,11 @@ class MemeCollectionViewController : UICollectionViewController {
             NSStrokeWidthAttributeName : -3.0
         ]
         let attribTopText = NSAttributedString(string: meme.textTop, attributes: labelTextAttributes)
-        let attribBottomText =  NSAttributedString(string: meme.textBottom, attributes: labelTextAttributes) 
+        let attribBottomText =  NSAttributedString(string: meme.textBottom, attributes: labelTextAttributes)
         
         cell.textTop?.attributedText = attribTopText
         cell.textBottom?.attributedText =  attribBottomText
-        cell.image.image = meme.image
+        cell.image.image = meme.memedImage
 
         return cell
     }
