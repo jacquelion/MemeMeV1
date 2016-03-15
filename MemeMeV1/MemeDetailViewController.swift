@@ -48,13 +48,13 @@ class MemeDetailViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let storyboard = UIStoryboard(name:"Main", bundle: nil)
-        let editMemeVC = storyboard.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-
-        editMemeVC.editingMeme = true
-        editMemeVC.topTextField = meme.textTop
-        editMemeVC.bottomTextField = meme.textBottom
-        editMemeVC.image = meme.image
+        if segue.identifier == "editMeme" {
+            let controller = segue.destinationViewController as! MemeEditorViewController
+        controller.editingMeme = true
+        controller.topTextField = meme.textTop
+        controller.bottomTextField = meme.textBottom
+        controller.image = meme.image
+        }
         
 //        editMemeVC.textFieldTop.text = meme.textTop
 //        editMemeVC.textFieldBottom.text = meme.textBottom

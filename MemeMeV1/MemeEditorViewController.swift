@@ -61,10 +61,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //Subscribe to keyboard notifications to allow the view to raise when necessary
         subscribeToKeyboardNotifications()
         
+        tabBarController?.tabBar.hidden = true;
+        
         if (editingMeme == true) {
-            textFieldTop.text = topTextField
-            textFieldBottom.text = bottomTextField
-            imagePickerView.image = image
+            print("topTextField: ", topTextField)
+            textFieldTop.text = self.topTextField
+            textFieldBottom.text = self.bottomTextField
+            imagePickerView.image = self.image
         }
 //            if let topText = self.textFieldTop {
 //                print ("topTextField: ", topTextField)
@@ -81,6 +84,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        tabBarController?.tabBar.hidden = false;
+
         unsubscribeToKeyboardNotifications()
     }
     
@@ -118,7 +123,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y = 0
+        view.frame.origin.y = 0
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
@@ -172,8 +177,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         navigationController?.navigationBarHidden = true
-        tabBarController?.tabBar.hidden = true
-
+        navigationController?.setToolbarHidden(true, animated: false)
+    
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage : UIImage =
@@ -181,8 +186,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         navigationController?.navigationBarHidden = false
-        tabBarController?.tabBar.hidden = false
-        
+        navigationController?.toolbarHidden = false
         return memedImage
     }
     
