@@ -28,17 +28,17 @@ class MemeDetailViewController: UIViewController {
         let attribTopText = NSMutableAttributedString(string: self.meme.textTop, attributes: labelTextAttributes)
         let attribBottomText =  NSMutableAttributedString(string: self.meme.textBottom, attributes: labelTextAttributes)
         
-        self.textTop?.attributedText = attribTopText
-        self.textBottom?.attributedText =  attribBottomText
-        self.image.image = self.meme.image
-        self.image.contentMode = .ScaleAspectFit
+        textTop?.attributedText = attribTopText
+        textBottom?.attributedText =  attribBottomText
+        image.image = self.meme.image
+        image.contentMode = .ScaleAspectFit
         
-        self.tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = true
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
     }
 
     @IBAction func editMeme(sender: UIBarButtonItem!) {

@@ -84,8 +84,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        tabBarController?.tabBar.hidden = false;
-
         unsubscribeToKeyboardNotifications()
     }
     
@@ -119,7 +117,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func keyboardWillShow(notification: NSNotification) {
         if textFieldTop.isFirstResponder() { return }
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if textFieldBottom.isFirstResponder() {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -162,6 +162,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func cancelAddMeme(sender: AnyObject) {
         navigationController!.popViewControllerAnimated(true)
+        tabBarController?.tabBar.hidden = false
+
     }
     
     //MARK: Save Meme
@@ -177,16 +179,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func generateMemedImage() -> UIImage {
         navigationController?.navigationBarHidden = true
-        navigationController?.setToolbarHidden(true, animated: false)
+        navigationController?.toolbarHidden = true
+        tabBarController?.tabBar.hidden = true
     
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        //view.drawViewHierarchyInRect(CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height-44), afterScreenUpdates: true)
+        print(self.view.frame)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         navigationController?.navigationBarHidden = false
-        navigationController?.toolbarHidden = false
+        //navigationController?.toolbarHidden = false
+        tabBarController?.tabBar.hidden = false
+
         return memedImage
     }
     
