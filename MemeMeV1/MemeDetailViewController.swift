@@ -41,9 +41,7 @@ class MemeDetailViewController: UIViewController {
         tabBarController?.tabBar.hidden = false
     }
 
-    @IBAction func editMeme(sender: UIBarButtonItem!) {
-        //TODO: fix edit
-        
+    @IBAction func editMeme(sender: UIBarButtonItem!) {        
         performSegueWithIdentifier("editMeme", sender: self)
     }
     
@@ -55,12 +53,6 @@ class MemeDetailViewController: UIViewController {
         controller.bottomTextField = meme.textBottom
         controller.image = meme.image
         }
-        
-//        editMemeVC.textFieldTop.text = meme.textTop
-//        editMemeVC.textFieldBottom.text = meme.textBottom
-//        editMemeVC.imagePickerView.image = meme.image
-//        
-//        editMemeVC.editingMeme = true
     }
     
 }

@@ -17,7 +17,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var textFieldBottom: UITextField!
     @IBOutlet weak var buttonShareMeme: UIBarButtonItem!
     @IBOutlet weak var buttonCancel: UIBarButtonItem!
-    var editingMeme: Bool!
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    var editingMeme = false
     var topTextField: String!
     var bottomTextField: String!
     var image: UIImage!
@@ -51,8 +53,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         //set bottom text field attributes
         textFieldBottom.placeholder = "BOTTOM"
         textFieldSetup(textFieldBottom)
-        
-        editingMeme = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,22 +64,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         tabBarController?.tabBar.hidden = true;
         
         if (editingMeme == true) {
-            print("topTextField: ", topTextField)
             textFieldTop.text = self.topTextField
             textFieldBottom.text = self.bottomTextField
             imagePickerView.image = self.image
         }
-//            if let topText = self.textFieldTop {
-//                print ("topTextField: ", topTextField)
-//                topText.text = topTextField
-//            }
-//            if let bottomText = self.textFieldBottom {
-//                bottomText.text = bottomTextField
-//            }
-//            if let imagePicker = self.imagePickerView {
-//                imagePicker.image = image
-//            }
-//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -181,18 +169,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         navigationController?.navigationBarHidden = true
         navigationController?.toolbarHidden = true
         tabBarController?.tabBar.hidden = true
+        toolbar.hidden = true
     
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
-        //view.drawViewHierarchyInRect(CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: self.view.frame.height-44), afterScreenUpdates: true)
         print(self.view.frame)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
         navigationController?.navigationBarHidden = false
-        //navigationController?.toolbarHidden = false
         tabBarController?.tabBar.hidden = false
+        toolbar.hidden = false
 
         return memedImage
     }

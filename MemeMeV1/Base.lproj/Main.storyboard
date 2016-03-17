@@ -65,7 +65,7 @@
         <!--My Memes Table View-->
         <scene sceneID="z8J-16-tTR">
             <objects>
-                <navigationController title="My Memes Table View" id="22m-Ac-MRn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="savedMemeTableViewController" title="My Memes Table View" id="22m-Ac-MRn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="TableView" id="YrJ-lm-YWs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="egj-VB-vpv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -190,6 +190,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47" id="IQL-3J-hEX"/>
                                 </constraints>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -198,6 +199,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="m6P-37-n19"/>
                                 </constraints>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -255,6 +257,7 @@
                         <outlet property="imagePickerView" destination="2Yf-g8-Hkc" id="LP3-FL-AcV"/>
                         <outlet property="textFieldBottom" destination="qZX-Yd-cF3" id="0Vp-WB-s1N"/>
                         <outlet property="textFieldTop" destination="V3L-vK-BC5" id="jtH-bm-UCR"/>
+                        <outlet property="toolbar" destination="Etv-FV-WWn" id="qa7-yC-6rx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
