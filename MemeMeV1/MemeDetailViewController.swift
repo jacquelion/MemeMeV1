@@ -51,7 +51,7 @@ class MemeDetailViewController: UIViewController {
         controller.editingMeme = true
         controller.topTextField = meme.textTop
         controller.bottomTextField = meme.textBottom
-        controller.image = meme.image
+            controller.image = meme.image
         }
     }
     
